@@ -1,12 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
 using Borealis.Syntax;
 
 namespace Borealis.Binding {
     internal sealed class Binder {
-        private readonly List<string> _diagnostics = new List<string>();
+        private readonly DiagnosticBag _diagnostics = new DiagnosticBag();
         
-        public IEnumerable<string> Diagnostics => _diagnostics;
+        public DiagnosticBag Diagnostics => _diagnostics;
 
         public BoundExpression BindExpression(SyntaxNode expression) {
             // ReSharper disable once SwitchStatementHandlesSomeKnownEnumValuesWithDefault
@@ -31,7 +30,7 @@ namespace Borealis.Binding {
             if (boundOperator != null) 
                 return new BoundUnaryExpression(boundOperator, boundExpression);
             
-            _diagnostics.Add($"Unary operator '{expression.OperatorToken.Text}' is not defined for type {boundExpression.Type}");
+            _diagnostics.ReportUndefinedUnaryOperator(expression.OperatorToken.Span, expression.OperatorToken.Text, boundExpression.Type);
             return boundExpression;
         }
 
@@ -43,7 +42,7 @@ namespace Borealis.Binding {
             if (boundOperator != null) 
                 return new BoundBinaryExpression(boundLeftExpression, boundOperator, boundRightExpression);
             
-            _diagnostics.Add($"Binary operator '{expression.OperatorToken.Text}' is not defined for types {boundLeftExpression.Type} and {boundRightExpression.Type}");
+            _diagnostics.ReportUndefinedBinaryOperator(expression.OperatorToken.Span, expression.OperatorToken.Text, boundLeftExpression.Type, boundRightExpression.Type);
             return boundLeftExpression;
         }
     }

@@ -1,5 +1,5 @@
 namespace Borealis.Syntax {
-    internal enum SyntaxType {
+    public enum SyntaxType {
         // Generic Tokens
         BadToken,
         EndOfLineToken,

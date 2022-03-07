@@ -3,7 +3,7 @@ using System.Collections.Generic;
 namespace Borealis.Syntax {
     internal sealed class Parser {
         private readonly SyntaxToken[] _tokens;
-        private readonly List<string> _diagnostics = new List<string>();
+        private readonly DiagnosticBag _diagnostics = new DiagnosticBag();
         private int _position;
         
         public Parser(string text) {
@@ -82,7 +82,7 @@ namespace Borealis.Syntax {
             if (Current.Type == type)
                 return NextToken();
             
-            _diagnostics.Add($"ERROR: Unexpected token <{Current.Type}>, expected <{type}>");
+            _diagnostics.ReportUnexpectedToken(Current.Span, Current.Type, type);
             return new SyntaxToken(type, Current.Position, null, null);
         }
         

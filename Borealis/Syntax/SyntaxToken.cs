@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 
 namespace Borealis.Syntax {
-    internal sealed class SyntaxToken : SyntaxNode {
+    public sealed class SyntaxToken : SyntaxNode {
         public SyntaxToken(SyntaxType type, int position, string text, object value) {
             Type = type;
             Position = position;
@@ -14,7 +14,8 @@ namespace Borealis.Syntax {
         public int Position { get; }
         public string Text { get; }
         public object Value { get; }
-
+        public TextSpan Span => new TextSpan(Position, Text.Length);
+        
         public override IEnumerable<SyntaxNode> GetChildren() {
             return Enumerable.Empty<SyntaxNode>();
         }

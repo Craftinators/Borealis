@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using Borealis.Binding;
 using Borealis.Syntax;
@@ -14,31 +15,44 @@ namespace Borealis {
                 string line = Console.ReadLine();
                 
                 SyntaxTree syntaxTree = SyntaxTree.Parse(line);
-                Binder binder = new Binder();
-                BoundExpression boundExpression = binder.BindExpression(syntaxTree.Root);
+                Compilation compilation = new Compilation(syntaxTree);
+                EvaluationResult result = compilation.Evaluate();
+
+                IReadOnlyList<Diagnostic> diagnostics = result.Diagnostics;
                 
-                IReadOnlyList<string> diagnostics = syntaxTree.Diagnostics.Concat(binder.Diagnostics).ToArray();
-                
-                ConsoleColor color = Console.ForegroundColor;
-                Console.ForegroundColor = ConsoleColor.DarkGray;
-                PrintSyntaxNodeTree(syntaxTree.Root);
-                Console.ForegroundColor = color;
-                
+                // PrintSyntaxNodeTree(syntaxTree.Root);
+
                 if (!diagnostics.Any()) {
-                    Evaluator evaluator = new Evaluator(boundExpression);
-                    object result = evaluator.Evaluate();
-                    Console.WriteLine(result);
+                    Console.WriteLine(result.Value);
                 } else {
-                    Console.ForegroundColor = ConsoleColor.DarkRed;
-                    foreach (string diagnostic in diagnostics) 
+                    foreach (Diagnostic diagnostic in diagnostics) {
+                        Console.WriteLine();
+                        Console.ForegroundColor = ConsoleColor.DarkRed;
                         Console.WriteLine(diagnostic);
-                    Console.ForegroundColor = color;
+                        Console.ResetColor();
+
+                        string prefix = line?.Substring(0, diagnostic.Span.Start);
+                        string error = line?.Substring(diagnostic.Span.Start, diagnostic.Span.Length);
+                        string suffix = line?.Substring(diagnostic.Span.End);
+
+                        Console.Write("     ");
+                        Console.Write(prefix);
+                        Console.ForegroundColor = ConsoleColor.DarkRed;
+                        Console.Write(error);
+                        Console.ResetColor();
+                        Console.Write(suffix);
+                        Console.WriteLine();
+                    }
+                    
+                    Console.WriteLine();
                 }
             }
             // ReSharper disable once FunctionNeverReturns
         }
 
         private static void PrintSyntaxNodeTree(SyntaxNode node, string indent = "", bool isLast = true) {
+            Console.ForegroundColor = ConsoleColor.DarkGray;
+            
             string marker = isLast ? "└──" : "├──";
             
             Console.Write(indent);
@@ -56,6 +70,8 @@ namespace Borealis {
             SyntaxNode lastChild = node.GetChildren().LastOrDefault();
             foreach (SyntaxNode child in node.GetChildren()) 
                 PrintSyntaxNodeTree(child, indent, child == lastChild);
+            
+            Console.ResetColor();
         }
     }
 }
