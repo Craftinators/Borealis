@@ -21,7 +21,7 @@ namespace Borealis {
                 
                 ConsoleColor color = Console.ForegroundColor;
                 Console.ForegroundColor = ConsoleColor.DarkGray;
-                PrettyPrint(syntaxTree.Root);
+                PrintSyntaxNodeTree(syntaxTree.Root);
                 Console.ForegroundColor = color;
                 
                 if (!diagnostics.Any()) {
@@ -38,7 +38,7 @@ namespace Borealis {
             // ReSharper disable once FunctionNeverReturns
         }
 
-        private static void PrettyPrint(SyntaxNode node, string indent = "", bool isLast = true) {
+        private static void PrintSyntaxNodeTree(SyntaxNode node, string indent = "", bool isLast = true) {
             string marker = isLast ? "└──" : "├──";
             
             Console.Write(indent);
@@ -55,7 +55,7 @@ namespace Borealis {
 
             SyntaxNode lastChild = node.GetChildren().LastOrDefault();
             foreach (SyntaxNode child in node.GetChildren()) 
-                PrettyPrint(child, indent, child == lastChild);
+                PrintSyntaxNodeTree(child, indent, child == lastChild);
         }
     }
 }
