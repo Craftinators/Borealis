@@ -10,14 +10,20 @@ namespace Borealis.Binding {
         public BoundExpression BindExpression(SyntaxNode expression) {
             // ReSharper disable once SwitchStatementHandlesSomeKnownEnumValuesWithDefault
             switch (expression.Type) {
+                case SyntaxType.ParenthesizedExpression: return BindParenthesizedExpression(expression as ParenthesizedExpressionSyntax);
                 case SyntaxType.LiteralExpression: return BindLiteralExpression(expression as LiteralExpressionSyntax);
                 case SyntaxType.UnaryExpression: return BindUnaryExpression(expression as UnaryExpressionSyntax);
                 case SyntaxType.BinaryExpression: return BindBinaryExpression(expression as BinaryExpressionSyntax);
-                case SyntaxType.ParenthesizedExpression: return BindExpression((expression as ParenthesizedExpressionSyntax)?.Expression);
+                case SyntaxType.NameExpression: return BindNameExpression(expression as NameExpressionSyntax);
+                case SyntaxType.AssignmentExpression: return BindAssignmentExpression(expression as AssignmentExpressionSyntax);
                 default: throw new Exception($"Unexpected syntax {expression.Type}");
             }
         }
-
+        
+        private BoundExpression BindParenthesizedExpression(ParenthesizedExpressionSyntax expression) {
+            return BindExpression(expression.Expression);
+        }
+        
         private static BoundExpression BindLiteralExpression(LiteralExpressionSyntax expression) {
             object value = expression.Value ?? 0;
             return new BoundLiteralExpression(value);
@@ -44,6 +50,14 @@ namespace Borealis.Binding {
             
             _diagnostics.ReportUndefinedBinaryOperator(expression.OperatorToken.Span, expression.OperatorToken.Text, boundLeftExpression.Type, boundRightExpression.Type);
             return boundLeftExpression;
+        }
+
+        private BoundExpression BindAssignmentExpression(AssignmentExpressionSyntax expression) {
+            throw new NotImplementedException();
+        }
+
+        private BoundExpression BindNameExpression(NameExpressionSyntax expression) {
+            throw new NotImplementedException();
         }
     }
 }

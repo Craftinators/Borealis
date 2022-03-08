@@ -28,13 +28,28 @@ namespace Borealis.Syntax {
             return new SyntaxTree(_diagnostics, expression, endOfFileToken);
         }
 
-        private ExpressionSyntax ParseExpression(int parentPrecedence = 0) {
+        private ExpressionSyntax ParseExpression() {
+            return ParseAssignmentExpression();
+        }
+        
+        private ExpressionSyntax ParseAssignmentExpression() {
+            if (Peek(0).Type == SyntaxType.IdentifierToken && Peek(1).Type == SyntaxType.EqualsEqualsToken) {
+                SyntaxToken identifierToken = NextToken();
+                SyntaxToken operatorToken = NextToken();
+                ExpressionSyntax rightExpression = ParseAssignmentExpression();
+                return new AssignmentExpressionSyntax(identifierToken, operatorToken, rightExpression);
+            }
+
+            return ParseBinaryExpression();
+        }
+        
+        private ExpressionSyntax ParseBinaryExpression(int parentPrecedence = 0) {
             ExpressionSyntax leftExpression;
             
             int unaryOperatorPrecedence = Current.Type.GetUnaryOperatorPrecedence();
             if (unaryOperatorPrecedence != 0 && unaryOperatorPrecedence >= parentPrecedence) {
                 SyntaxToken operatorToken = NextToken();
-                ExpressionSyntax expression = ParseExpression(unaryOperatorPrecedence);
+                ExpressionSyntax expression = ParseBinaryExpression(unaryOperatorPrecedence);
                 leftExpression = new UnaryExpressionSyntax(operatorToken, expression);
             } else {
                 leftExpression = ParsePrimaryExpression();
@@ -45,7 +60,7 @@ namespace Borealis.Syntax {
                 if (precedence == 0 || precedence <= parentPrecedence) break;
 
                 SyntaxToken operatorToken = NextToken();
-                ExpressionSyntax rightExpression = ParseExpression(precedence);
+                ExpressionSyntax rightExpression = ParseBinaryExpression(precedence);
 
                 leftExpression = new BinaryExpressionSyntax(leftExpression, operatorToken, rightExpression);
             }
@@ -66,6 +81,9 @@ namespace Borealis.Syntax {
                     SyntaxToken keywordToken = NextToken();
                     bool value = keywordToken.Type == SyntaxType.TrueKeyword;
                     return new LiteralExpressionSyntax(keywordToken, value);
+                case SyntaxType.IdentifierToken:
+                    SyntaxToken identifierToken = NextToken();
+                    return new NameExpressionSyntax(identifierToken);
                 default:
                     SyntaxToken numberToken = MatchToken(SyntaxType.NumberToken);
                     return new LiteralExpressionSyntax(numberToken);

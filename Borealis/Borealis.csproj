@@ -56,9 +56,11 @@
         <Compile Include="Program.cs" />
         <Compile Include="Properties\AssemblyInfo.cs" />
         <Compile Include="Syntax\Diagnostic.cs" />
+        <Compile Include="Syntax\Expression\AssignmentExpressionSyntax.cs" />
         <Compile Include="Syntax\Expression\BinaryExpressionSyntax.cs" />
         <Compile Include="Syntax\Expression\ExpressionSyntax.cs" />
         <Compile Include="Syntax\Expression\LiteralExpressionSyntax.cs" />
+        <Compile Include="Syntax\Expression\NameExpressionSyntax.cs" />
         <Compile Include="Syntax\Expression\ParenthesizedExpressionSyntax.cs" />
         <Compile Include="Syntax\Expression\UnaryExpressionSyntax.cs" />
         <Compile Include="Syntax\Lexer.cs" />

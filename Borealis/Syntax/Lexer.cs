@@ -75,9 +75,9 @@ namespace Borealis.Syntax {
                     if (Lookahead == '=') {
                         _position += 2;
                         return new SyntaxToken(SyntaxType.EqualsEqualsToken, start, "==", null);
+                    } else {
+                        return new SyntaxToken(SyntaxType.EqualsToken, _position++, "=", null);
                     }
-
-                    break;
                 case '!':
                     if (Lookahead == '=') {
                         _position += 2;

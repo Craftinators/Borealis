@@ -5,7 +5,7 @@ namespace Borealis.Syntax {
         EndOfLineToken,
         WhitespaceToken,
         IdentifierToken,
-        
+
         // Tokens
         NumberToken,
         PlusToken,
@@ -19,13 +19,16 @@ namespace Borealis.Syntax {
         PipePipeToken,
         EqualsEqualsToken,
         BangEqualsToken,
+        EqualsToken,
         
         // Expressions
         LiteralExpression,
         UnaryExpression,
         BinaryExpression,
         ParenthesizedExpression,
-        
+        NameExpression,
+        AssignmentExpression,
+
         // Keywords
         TrueKeyword,
         FalseKeyword
