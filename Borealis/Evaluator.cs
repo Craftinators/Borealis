@@ -1,22 +1,31 @@
 using System;
+using System.Collections.Generic;
 using Borealis.Binding;
 
 namespace Borealis {
     internal sealed class Evaluator {
         private readonly BoundExpression _root;
-        
-        public Evaluator(BoundExpression root) {
+        private readonly Dictionary<string, object> _variables;
+
+        public Evaluator(BoundExpression root, Dictionary<string, object> variables) {
             _root = root;
+            _variables = variables;
         }
 
         public object Evaluate() {
             return EvaluateExpression(_root);
         }
 
-        private static object EvaluateExpression(BoundExpression node) {
+        private object EvaluateExpression(BoundExpression node) {
             switch (node) {
                 case BoundLiteralExpression number:
                     return number.Value;
+                case BoundVariableExpression variableExpression:
+                    return _variables[variableExpression.Name];
+                case BoundAssignmentExpression assignmentExpression:
+                    object value = EvaluateExpression(assignmentExpression.Expression);
+                    _variables[assignmentExpression.Name] = value;
+                    return value;
                 case BoundUnaryExpression unaryExpression: {
                     object expression = EvaluateExpression(unaryExpression.Expression);
                     // ReSharper disable once SwitchStatementHandlesSomeKnownEnumValuesWithDefault

@@ -33,7 +33,7 @@ namespace Borealis.Syntax {
         }
         
         private ExpressionSyntax ParseAssignmentExpression() {
-            if (Peek(0).Type == SyntaxType.IdentifierToken && Peek(1).Type == SyntaxType.EqualsEqualsToken) {
+            if (Peek(0).Type == SyntaxType.IdentifierToken && Peek(1).Type == SyntaxType.EqualsToken) {
                 SyntaxToken identifierToken = NextToken();
                 SyntaxToken operatorToken = NextToken();
                 ExpressionSyntax rightExpression = ParseAssignmentExpression();

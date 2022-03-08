@@ -1,10 +1,16 @@
 ﻿using System;
+using System.Collections.Generic;
 using Borealis.Syntax;
 
 namespace Borealis.Binding {
     internal sealed class Binder {
+        private readonly Dictionary<string, object> _variables;
         private readonly DiagnosticBag _diagnostics = new DiagnosticBag();
-        
+
+        public Binder(Dictionary<string, object> variables) {
+            _variables = variables;
+        }
+
         public DiagnosticBag Diagnostics => _diagnostics;
 
         public BoundExpression BindExpression(SyntaxNode expression) {
@@ -52,12 +58,26 @@ namespace Borealis.Binding {
             return boundLeftExpression;
         }
 
-        private BoundExpression BindAssignmentExpression(AssignmentExpressionSyntax expression) {
-            throw new NotImplementedException();
-        }
-
         private BoundExpression BindNameExpression(NameExpressionSyntax expression) {
-            throw new NotImplementedException();
+            string name = expression.IdentifierToken.Text;
+            if (!_variables.TryGetValue(name, out object value)) {
+                _diagnostics.ReportUndefinedName(expression.IdentifierToken.Span, name);
+                return new BoundLiteralExpression(0);
+            }
+
+            Type type = value.GetType();
+            return new BoundVariableExpression(name, type);
+        }
+        
+        private BoundExpression BindAssignmentExpression(AssignmentExpressionSyntax expression) {
+            string name = expression.IdentifierToken.Text;
+            BoundExpression boundExpression = BindExpression(expression.Expression);
+
+            object defaultValue = boundExpression.Type == typeof(int) ? 0 :
+                boundExpression.Type == typeof(bool) ? (object) false : null;
+
+            _variables[name] = defaultValue ?? throw new Exception($"Unsupported variable type: {boundExpression.Type}");
+            return new BoundAssignmentExpression(name, boundExpression);
         }
     }
 }

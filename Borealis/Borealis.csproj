@@ -43,10 +43,12 @@
         <Compile Include="Binding\BoundNode.cs" />
         <Compile Include="Binding\BoundNodeType.cs" />
         <Compile Include="Binding\BoundUnaryOperatorType.cs" />
+        <Compile Include="Binding\Expression\BoundAssignmentExpression.cs" />
         <Compile Include="Binding\Expression\BoundBinaryExpression.cs" />
         <Compile Include="Binding\Expression\BoundExpression.cs" />
         <Compile Include="Binding\Expression\BoundLiteralExpression.cs" />
         <Compile Include="Binding\Expression\BoundUnaryExpression.cs" />
+        <Compile Include="Binding\Expression\BoundVariableExpression.cs" />
         <Compile Include="Binding\Operator\BoundBinaryOperator.cs" />
         <Compile Include="Binding\Operator\BoundUnaryOperator.cs" />
         <Compile Include="Compilation.cs" />

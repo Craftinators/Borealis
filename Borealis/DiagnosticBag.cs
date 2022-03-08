@@ -40,6 +40,11 @@ namespace Borealis {
             Report(span, message);
         }
         
+        public void ReportUndefinedName(TextSpan span, string name) {
+            string message = $"Variable '{name}' doesn't exist.";
+            Report(span, message);
+        }
+        
         private void Report(TextSpan span, string message) {
             Diagnostic diagnostic = new Diagnostic(span, message);
             _diagnostics.Add(diagnostic);

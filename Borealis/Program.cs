@@ -10,13 +10,15 @@ namespace Borealis {
     internal static class Program {
         // ReSharper disable once UnusedMember.Global
         public static void Compile() {
+            Dictionary<string, object> variables = new Dictionary<string, object>();
+            
             while (true) {
                 Console.Write("> ");
                 string line = Console.ReadLine();
                 
                 SyntaxTree syntaxTree = SyntaxTree.Parse(line);
                 Compilation compilation = new Compilation(syntaxTree);
-                EvaluationResult result = compilation.Evaluate();
+                EvaluationResult result = compilation.Evaluate(variables);
 
                 IReadOnlyList<Diagnostic> diagnostics = result.Diagnostics;
                 
