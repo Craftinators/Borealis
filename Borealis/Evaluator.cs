@@ -50,6 +50,10 @@ namespace Borealis {
                         case BoundBinaryOperatorType.LogicalAnd: return (bool) leftValue && (bool) rightValue;
                         case BoundBinaryOperatorType.LogicalXor: return (bool) leftValue ^ (bool) rightValue;
                         case BoundBinaryOperatorType.LogicalOr: return (bool) leftValue || (bool) rightValue;
+                        case BoundBinaryOperatorType.GreaterThanOrEqualTo: return (int) leftValue >= (int) rightValue;
+                        case BoundBinaryOperatorType.GreaterThan: return (int) leftValue > (int) rightValue;
+                        case BoundBinaryOperatorType.LessThanOrEqualTo: return (int) leftValue <= (int) rightValue;
+                        case BoundBinaryOperatorType.LessThan: return (int) leftValue < (int) rightValue;
                         case BoundBinaryOperatorType.Equals: return Equals(leftValue, rightValue);
                         case BoundBinaryOperatorType.NotEquals: return !Equals(leftValue, rightValue);
                         default: throw new Exception($"Unexpected binary operator {binaryExpression.BoundOperator}");

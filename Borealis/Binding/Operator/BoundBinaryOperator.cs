@@ -12,6 +12,15 @@ namespace Borealis.Binding {
             new BoundBinaryOperator(SyntaxType.SlashToken, BoundBinaryOperatorType.Division, typeof(int)),
             new BoundBinaryOperator(SyntaxType.PercentToken, BoundBinaryOperatorType.Remainder, typeof(int)),
 
+            new BoundBinaryOperator(SyntaxType.GreaterThanEqualsToken, BoundBinaryOperatorType.GreaterThanOrEqualTo,
+                typeof(int), typeof(bool)),
+            new BoundBinaryOperator(SyntaxType.GreaterThanToken, BoundBinaryOperatorType.GreaterThan, typeof(int),
+                typeof(bool)),
+            new BoundBinaryOperator(SyntaxType.LessThanEqualsToken, BoundBinaryOperatorType.LessThanOrEqualTo,
+                typeof(int), typeof(bool)),
+            new BoundBinaryOperator(SyntaxType.LessThanToken, BoundBinaryOperatorType.LessThan, typeof(int),
+                typeof(bool)),
+
             new BoundBinaryOperator(SyntaxType.EqualsEqualsToken, BoundBinaryOperatorType.Equals, typeof(int),
                 typeof(bool)),
             new BoundBinaryOperator(SyntaxType.EqualsEqualsToken, BoundBinaryOperatorType.Equals, typeof(bool)),

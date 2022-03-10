@@ -97,6 +97,20 @@ namespace Borealis.Syntax {
                     } else {
                         return new SyntaxToken(SyntaxType.BangToken, _position++, "!", null);
                     }
+                case '>':
+                    if (Lookahead == '=') {
+                        _position += 2;
+                        return new SyntaxToken(SyntaxType.GreaterThanEqualsToken, start, ">=", null);
+                    } else {
+                        return new SyntaxToken(SyntaxType.GreaterThanToken, _position++, ">", null);
+                    }
+                case '<':
+                    if (Lookahead == '=') {
+                        _position += 2;
+                        return new SyntaxToken(SyntaxType.LessThanEqualsToken, start, "<=", null);
+                    } else {
+                        return new SyntaxToken(SyntaxType.LessThanToken, _position++, "<", null);
+                    }
             }
 
             Diagnostics.ReportBadCharacter(_position, Current);
