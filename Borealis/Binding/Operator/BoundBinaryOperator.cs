@@ -12,13 +12,13 @@ namespace Borealis.Binding {
             new BoundBinaryOperator(SyntaxType.SlashToken, BoundBinaryOperatorType.Division, typeof(int)),
             new BoundBinaryOperator(SyntaxType.PercentToken, BoundBinaryOperatorType.Remainder, typeof(int)),
 
-            new BoundBinaryOperator(SyntaxType.GreaterThanEqualsToken, BoundBinaryOperatorType.GreaterThanOrEqualTo,
-                typeof(int), typeof(bool)),
-            new BoundBinaryOperator(SyntaxType.GreaterThanToken, BoundBinaryOperatorType.GreaterThan, typeof(int),
+            new BoundBinaryOperator(SyntaxType.RightAngleBracketEqualsToken,
+                BoundBinaryOperatorType.GreaterThanOrEqualTo, typeof(int), typeof(bool)),
+            new BoundBinaryOperator(SyntaxType.RightAngleBracketToken, BoundBinaryOperatorType.GreaterThan, typeof(int),
                 typeof(bool)),
-            new BoundBinaryOperator(SyntaxType.LessThanEqualsToken, BoundBinaryOperatorType.LessThanOrEqualTo,
+            new BoundBinaryOperator(SyntaxType.LeftAngleBracketEqualsToken, BoundBinaryOperatorType.LessThanOrEqualTo,
                 typeof(int), typeof(bool)),
-            new BoundBinaryOperator(SyntaxType.LessThanToken, BoundBinaryOperatorType.LessThan, typeof(int),
+            new BoundBinaryOperator(SyntaxType.LeftAngleBracketToken, BoundBinaryOperatorType.LessThan, typeof(int),
                 typeof(bool)),
 
             new BoundBinaryOperator(SyntaxType.EqualsEqualsToken, BoundBinaryOperatorType.Equals, typeof(int),
@@ -32,7 +32,12 @@ namespace Borealis.Binding {
             new BoundBinaryOperator(SyntaxType.AmpersandAmpersandToken, BoundBinaryOperatorType.LogicalAnd,
                 typeof(bool)),
             new BoundBinaryOperator(SyntaxType.CaretCaretToken, BoundBinaryOperatorType.LogicalXor, typeof(bool)),
-            new BoundBinaryOperator(SyntaxType.PipePipeToken, BoundBinaryOperatorType.LogicalOr, typeof(bool))
+            new BoundBinaryOperator(SyntaxType.PipePipeToken, BoundBinaryOperatorType.LogicalOr, typeof(bool)),
+
+            new BoundBinaryOperator(SyntaxType.LeftAngleBracketLeftAngleBracketToken, BoundBinaryOperatorType.Leftshift,
+                typeof(int)),
+            new BoundBinaryOperator(SyntaxType.RightAngleBracketRightAngleBracketToken,
+                BoundBinaryOperatorType.Rightshift, typeof(int))
         };
 
         public BoundBinaryOperator(SyntaxType syntaxType, BoundBinaryOperatorType operatorType, Type type) : this(

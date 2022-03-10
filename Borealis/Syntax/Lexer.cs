@@ -98,18 +98,27 @@ namespace Borealis.Syntax {
                         return new SyntaxToken(SyntaxType.BangToken, _position++, "!", null);
                     }
                 case '>':
-                    if (Lookahead == '=') {
-                        _position += 2;
-                        return new SyntaxToken(SyntaxType.GreaterThanEqualsToken, start, ">=", null);
-                    } else {
-                        return new SyntaxToken(SyntaxType.GreaterThanToken, _position++, ">", null);
+                    switch (Lookahead) {
+                        case '=':
+                            _position += 2;
+                            return new SyntaxToken(SyntaxType.RightAngleBracketEqualsToken, start, ">=", null);
+                        case '>':
+                            _position += 2;
+                            return new SyntaxToken(SyntaxType.RightAngleBracketRightAngleBracketToken, start, ">>",
+                                null);
+                        default:
+                            return new SyntaxToken(SyntaxType.RightAngleBracketToken, _position++, ">", null);
                     }
                 case '<':
-                    if (Lookahead == '=') {
-                        _position += 2;
-                        return new SyntaxToken(SyntaxType.LessThanEqualsToken, start, "<=", null);
-                    } else {
-                        return new SyntaxToken(SyntaxType.LessThanToken, _position++, "<", null);
+                    switch (Lookahead) {
+                        case '=':
+                            _position += 2;
+                            return new SyntaxToken(SyntaxType.LeftAngleBracketEqualsToken, start, "<=", null);
+                        case '<':
+                            _position += 2;
+                            return new SyntaxToken(SyntaxType.LeftAngleBracketLeftAngleBracketToken, start, "<<", null);
+                        default:
+                            return new SyntaxToken(SyntaxType.LeftAngleBracketToken, _position++, "<", null);
                     }
             }
 

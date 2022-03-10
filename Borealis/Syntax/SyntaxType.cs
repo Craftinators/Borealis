@@ -21,12 +21,14 @@ namespace Borealis.Syntax {
         AmpersandAmpersandToken,
         CaretCaretToken,
         PipePipeToken,
-        GreaterThanEqualsToken,
-        GreaterThanToken,
-        LessThanEqualsToken,
-        LessThanToken,
+        RightAngleBracketEqualsToken,
+        RightAngleBracketToken,
+        LeftAngleBracketEqualsToken,
+        LeftAngleBracketToken,
         EqualsEqualsToken,
         EqualsToken,
+        RightAngleBracketRightAngleBracketToken,
+        LeftAngleBracketLeftAngleBracketToken,
 
         // Expressions
         LiteralExpression,

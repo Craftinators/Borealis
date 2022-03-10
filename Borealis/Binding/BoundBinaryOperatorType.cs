@@ -6,6 +6,8 @@
         Multiplication,
         Division,
         Remainder,
+        Leftshift,
+        Rightshift,
         GreaterThanOrEqualTo,
         GreaterThan,
         LessThanOrEqualTo,

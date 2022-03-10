@@ -56,6 +56,8 @@ namespace Borealis {
                         case BoundBinaryOperatorType.LessThan: return (int) leftValue < (int) rightValue;
                         case BoundBinaryOperatorType.Equals: return Equals(leftValue, rightValue);
                         case BoundBinaryOperatorType.NotEquals: return !Equals(leftValue, rightValue);
+                        case BoundBinaryOperatorType.Leftshift: return (int) leftValue << (int) rightValue;
+                        case BoundBinaryOperatorType.Rightshift: return (int) leftValue >> (int) rightValue;
                         default: throw new Exception($"Unexpected binary operator {binaryExpression.BoundOperator}");
                     }
                 }
