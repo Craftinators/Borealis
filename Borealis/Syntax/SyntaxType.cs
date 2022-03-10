@@ -19,6 +19,7 @@ namespace Borealis.Syntax {
         BangEqualsToken,
         BangToken,
         AmpersandAmpersandToken,
+        CaretCaretToken,
         PipePipeToken,
         EqualsEqualsToken,
         EqualsToken,

@@ -48,6 +48,7 @@ namespace Borealis {
                         case BoundBinaryOperatorType.Division: return (int) leftValue / (int) rightValue;
                         case BoundBinaryOperatorType.Remainder: return (int) leftValue % (int) rightValue;
                         case BoundBinaryOperatorType.LogicalAnd: return (bool) leftValue && (bool) rightValue;
+                        case BoundBinaryOperatorType.LogicalXor: return (bool) leftValue ^ (bool) rightValue;
                         case BoundBinaryOperatorType.LogicalOr: return (bool) leftValue || (bool) rightValue;
                         case BoundBinaryOperatorType.Equals: return Equals(leftValue, rightValue);
                         case BoundBinaryOperatorType.NotEquals: return !Equals(leftValue, rightValue);

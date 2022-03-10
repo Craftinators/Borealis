@@ -22,6 +22,7 @@ namespace Borealis.Binding {
 
             new BoundBinaryOperator(SyntaxType.AmpersandAmpersandToken, BoundBinaryOperatorType.LogicalAnd,
                 typeof(bool)),
+            new BoundBinaryOperator(SyntaxType.CaretCaretToken, BoundBinaryOperatorType.LogicalXor, typeof(bool)),
             new BoundBinaryOperator(SyntaxType.PipePipeToken, BoundBinaryOperatorType.LogicalOr, typeof(bool))
         };
 

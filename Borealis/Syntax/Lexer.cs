@@ -69,6 +69,13 @@ namespace Borealis.Syntax {
                     }
 
                     break;
+                case '^':
+                    if (Lookahead == '^') {
+                        _position += 2;
+                        return new SyntaxToken(SyntaxType.CaretCaretToken, start, "^^", null);
+                    }
+
+                    break;
                 case '|':
                     if (Lookahead == '|') {
                         _position += 2;
