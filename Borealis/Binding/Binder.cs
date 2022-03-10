@@ -1,13 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Borealis.Syntax;
 
 namespace Borealis.Binding {
     internal sealed class Binder {
-        private readonly Dictionary<string, object> _variables;
+        private readonly Dictionary<VariableSymbol, object> _variables;
         private readonly DiagnosticBag _diagnostics = new DiagnosticBag();
 
-        public Binder(Dictionary<string, object> variables) {
+        public Binder(Dictionary<VariableSymbol, object> variables) {
             _variables = variables;
         }
 
@@ -60,24 +61,27 @@ namespace Borealis.Binding {
 
         private BoundExpression BindNameExpression(NameExpressionSyntax expression) {
             string name = expression.IdentifierToken.Text;
-            if (!_variables.TryGetValue(name, out object value)) {
+            VariableSymbol variable = _variables.Keys.FirstOrDefault(v => v.Name == name);
+
+            if (variable == null) {
                 _diagnostics.ReportUndefinedName(expression.IdentifierToken.Span, name);
                 return new BoundLiteralExpression(0);
             }
-
-            Type type = value.GetType();
-            return new BoundVariableExpression(name, type);
+            
+            return new BoundVariableExpression(variable);
         }
         
         private BoundExpression BindAssignmentExpression(AssignmentExpressionSyntax expression) {
             string name = expression.IdentifierToken.Text;
             BoundExpression boundExpression = BindExpression(expression.Expression);
 
-            object defaultValue = boundExpression.Type == typeof(int) ? 0 :
-                boundExpression.Type == typeof(bool) ? (object) false : null;
+            VariableSymbol existingVariable = _variables.Keys.FirstOrDefault(v => v.Name == name);
+            if (existingVariable != null) _variables.Remove(existingVariable);
 
-            _variables[name] = defaultValue ?? throw new Exception($"Unsupported variable type: {boundExpression.Type}");
-            return new BoundAssignmentExpression(name, boundExpression);
+            VariableSymbol variable = new VariableSymbol(name, boundExpression.Type);
+            _variables[variable] = null;
+            
+            return new BoundAssignmentExpression(variable, boundExpression);
         }
     }
 }

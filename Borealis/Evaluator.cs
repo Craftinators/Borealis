@@ -5,9 +5,9 @@ using Borealis.Binding;
 namespace Borealis {
     internal sealed class Evaluator {
         private readonly BoundExpression _root;
-        private readonly Dictionary<string, object> _variables;
+        private readonly Dictionary<VariableSymbol, object> _variables;
 
-        public Evaluator(BoundExpression root, Dictionary<string, object> variables) {
+        public Evaluator(BoundExpression root, Dictionary<VariableSymbol, object> variables) {
             _root = root;
             _variables = variables;
         }
@@ -21,10 +21,10 @@ namespace Borealis {
                 case BoundLiteralExpression number:
                     return number.Value;
                 case BoundVariableExpression variableExpression:
-                    return _variables[variableExpression.Name];
+                    return _variables[variableExpression.Variable];
                 case BoundAssignmentExpression assignmentExpression:
                     object value = EvaluateExpression(assignmentExpression.Expression);
-                    _variables[assignmentExpression.Name] = value;
+                    _variables[assignmentExpression.Variable] = value;
                     return value;
                 case BoundUnaryExpression unaryExpression: {
                     object expression = EvaluateExpression(unaryExpression.Expression);

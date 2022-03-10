@@ -10,7 +10,7 @@ namespace Borealis {
     internal static class Program {
         // ReSharper disable once UnusedMember.Global
         public static void Compile() {
-            Dictionary<string, object> variables = new Dictionary<string, object>();
+            Dictionary<VariableSymbol, object> variables = new Dictionary<VariableSymbol, object>();
             
             while (true) {
                 Console.Write("> ");

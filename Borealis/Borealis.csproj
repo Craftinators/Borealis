@@ -73,6 +73,7 @@
         <Compile Include="Syntax\SyntaxTree.cs" />
         <Compile Include="Syntax\SyntaxType.cs" />
         <Compile Include="TextSpan.cs" />
+        <Compile Include="VariableSymbol.cs" />
     </ItemGroup>
     <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
     <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

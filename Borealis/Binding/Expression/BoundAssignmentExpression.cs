@@ -2,14 +2,14 @@
 
 namespace Borealis.Binding {
     internal sealed class BoundAssignmentExpression : BoundExpression {
-        public BoundAssignmentExpression(string name, BoundExpression expression) {
-            Name = name;
+        public BoundAssignmentExpression(VariableSymbol variable, BoundExpression expression) {
+            Variable = variable;
             Expression = expression;
         }
 
         public override BoundNodeType NodeType => BoundNodeType.AssignmentExpression;
         public override Type Type => Expression.Type;
-        public string Name { get; }
+        public VariableSymbol Variable { get; }
         public BoundExpression Expression { get; }
     }
 }
