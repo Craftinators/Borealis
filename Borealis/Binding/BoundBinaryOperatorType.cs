@@ -4,9 +4,10 @@
         Subtraction,
         Multiplication,
         Division,
+        Remainder,
         Equals,
         NotEquals,
         LogicalAnd,
-        LogicalOr,
+        LogicalOr
     }
 }

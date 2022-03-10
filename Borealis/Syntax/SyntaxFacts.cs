@@ -5,28 +5,29 @@
             switch (type) {
                 case SyntaxType.PlusToken:
                 case SyntaxType.MinusToken:
-                case SyntaxType.BangToken: 
+                case SyntaxType.BangToken:
                     return 6;
-                default: 
+                default:
                     return 0;
             }
         }
-        
+
         public static int GetBinaryOperatorPrecedence(this SyntaxType type) {
             // ReSharper disable once SwitchStatementHandlesSomeKnownEnumValuesWithDefault
             switch (type) {
                 case SyntaxType.StarToken:
-                case SyntaxType.SlashToken: 
+                case SyntaxType.SlashToken:
+                case SyntaxType.PercentToken:
                     return 5;
                 case SyntaxType.PlusToken:
-                case SyntaxType.MinusToken: 
+                case SyntaxType.MinusToken:
                     return 4;
                 case SyntaxType.EqualsEqualsToken:
-                case SyntaxType.BangEqualsToken: 
+                case SyntaxType.BangEqualsToken:
                     return 3;
-                case SyntaxType.AmpersandAmpersandToken: 
+                case SyntaxType.AmpersandAmpersandToken:
                     return 2;
-                case SyntaxType.PipePipeToken: 
+                case SyntaxType.PipePipeToken:
                     return 1;
                 default: return 0;
             }

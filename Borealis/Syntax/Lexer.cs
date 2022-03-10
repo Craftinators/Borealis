@@ -1,32 +1,30 @@
-using System.Collections.Generic;
-
 namespace Borealis.Syntax {
     internal sealed class Lexer {
         private readonly string _text;
-        private readonly DiagnosticBag _diagnostics = new DiagnosticBag();
         private int _position;
-        
+
         public Lexer(string text) {
             _text = text;
         }
 
-        public DiagnosticBag Diagnostics => _diagnostics;
+        public DiagnosticBag Diagnostics { get; } = new DiagnosticBag();
+
         private char Current => Peek(0);
         private char Lookahead => Peek(1);
-        
+
         public SyntaxToken Lex() {
             if (_position >= _text.Length) return new SyntaxToken(SyntaxType.EndOfLineToken, _position, "\0", null);
 
             int start = _position;
-            
+
             if (char.IsDigit(Current)) {
                 while (char.IsDigit(Current)) Next();
 
                 int length = _position - start;
                 string subtext = _text.Substring(start, length);
 
-                if (!int.TryParse(subtext, out int value)) 
-                    _diagnostics.ReportInvalidNumber(new TextSpan(start, length), _text, typeof(int));
+                if (!int.TryParse(subtext, out int value))
+                    Diagnostics.ReportInvalidNumber(new TextSpan(start, length), _text, typeof(int));
 
                 return new SyntaxToken(SyntaxType.NumberToken, start, subtext, value);
             }
@@ -46,15 +44,16 @@ namespace Borealis.Syntax {
                 int length = _position - start;
                 string subtext = _text.Substring(start, length);
                 SyntaxType type = SyntaxFacts.GetKeywordType(subtext);
-                
+
                 return new SyntaxToken(type, start, subtext, null);
             }
-            
+
             switch (Current) {
                 case '+': return new SyntaxToken(SyntaxType.PlusToken, _position++, "+", null);
                 case '-': return new SyntaxToken(SyntaxType.MinusToken, _position++, "-", null);
                 case '*': return new SyntaxToken(SyntaxType.StarToken, _position++, "*", null);
                 case '/': return new SyntaxToken(SyntaxType.SlashToken, _position++, "/", null);
+                case '%': return new SyntaxToken(SyntaxType.PercentToken, _position++, "%", null);
                 case '(': return new SyntaxToken(SyntaxType.OpenParenthesisToken, _position++, "(", null);
                 case ')': return new SyntaxToken(SyntaxType.CloseParenthesisToken, _position++, ")", null);
                 case '&':
@@ -62,7 +61,7 @@ namespace Borealis.Syntax {
                         _position += 2;
                         return new SyntaxToken(SyntaxType.AmpersandAmpersandToken, start, "&&", null);
                     }
-                    
+
                     break;
                 case '|':
                     if (Lookahead == '|') {
@@ -86,8 +85,8 @@ namespace Borealis.Syntax {
                         return new SyntaxToken(SyntaxType.BangToken, _position++, "!", null);
                     }
             }
-            
-            _diagnostics.ReportBadCharacter(_position, Current);
+
+            Diagnostics.ReportBadCharacter(_position, Current);
             return new SyntaxToken(SyntaxType.BadToken, _position++, _text.Substring(_position - 1, 1), null);
         }
 
@@ -95,7 +94,7 @@ namespace Borealis.Syntax {
             int index = _position + offset;
             return index >= _text.Length ? '\0' : _text[index];
         }
-        
+
         private void Next() {
             _position++;
         }

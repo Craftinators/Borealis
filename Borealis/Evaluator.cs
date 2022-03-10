@@ -40,12 +40,12 @@ namespace Borealis {
                     object leftValue = EvaluateExpression(binaryExpression.LeftExpression);
                     object rightValue = EvaluateExpression(binaryExpression.RightExpression);
 
-                    // ReSharper disable once SwitchStatementHandlesSomeKnownEnumValuesWithDefault
                     switch (binaryExpression.BoundOperator.OperatorType) {
                         case BoundBinaryOperatorType.Addition: return (int) leftValue + (int) rightValue;
                         case BoundBinaryOperatorType.Subtraction: return (int) leftValue - (int) rightValue;
                         case BoundBinaryOperatorType.Multiplication: return (int) leftValue * (int) rightValue;
                         case BoundBinaryOperatorType.Division: return (int) leftValue / (int) rightValue;
+                        case BoundBinaryOperatorType.Remainder: return (int) leftValue % (int) rightValue;
                         case BoundBinaryOperatorType.LogicalAnd: return (bool) leftValue && (bool) rightValue;
                         case BoundBinaryOperatorType.LogicalOr: return (bool) leftValue || (bool) rightValue;
                         case BoundBinaryOperatorType.Equals: return Equals(leftValue, rightValue);
@@ -54,7 +54,7 @@ namespace Borealis {
                     }
                 }
             }
-            
+
             throw new Exception($"Unexpected node {node.Type}");
         }
     }

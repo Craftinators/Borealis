@@ -12,6 +12,7 @@ namespace Borealis.Syntax {
         MinusToken,
         StarToken,
         SlashToken,
+        PercentToken,
         OpenParenthesisToken,
         CloseParenthesisToken,
         BangToken,
@@ -20,7 +21,7 @@ namespace Borealis.Syntax {
         EqualsEqualsToken,
         BangEqualsToken,
         EqualsToken,
-        
+
         // Expressions
         LiteralExpression,
         UnaryExpression,
