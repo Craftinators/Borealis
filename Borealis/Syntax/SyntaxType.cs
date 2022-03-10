@@ -10,16 +10,17 @@ namespace Borealis.Syntax {
         NumberToken,
         PlusToken,
         MinusToken,
+        StarStarToken,
         StarToken,
         SlashToken,
         PercentToken,
         OpenParenthesisToken,
         CloseParenthesisToken,
+        BangEqualsToken,
         BangToken,
         AmpersandAmpersandToken,
         PipePipeToken,
         EqualsEqualsToken,
-        BangEqualsToken,
         EqualsToken,
 
         // Expressions

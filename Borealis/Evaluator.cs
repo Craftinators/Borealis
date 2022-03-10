@@ -43,6 +43,7 @@ namespace Borealis {
                     switch (binaryExpression.BoundOperator.OperatorType) {
                         case BoundBinaryOperatorType.Addition: return (int) leftValue + (int) rightValue;
                         case BoundBinaryOperatorType.Subtraction: return (int) leftValue - (int) rightValue;
+                        case BoundBinaryOperatorType.Exponent: return (int) Math.Pow((int) leftValue, (int) rightValue);
                         case BoundBinaryOperatorType.Multiplication: return (int) leftValue * (int) rightValue;
                         case BoundBinaryOperatorType.Division: return (int) leftValue / (int) rightValue;
                         case BoundBinaryOperatorType.Remainder: return (int) leftValue % (int) rightValue;

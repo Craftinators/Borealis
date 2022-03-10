@@ -51,7 +51,13 @@ namespace Borealis.Syntax {
             switch (Current) {
                 case '+': return new SyntaxToken(SyntaxType.PlusToken, _position++, "+", null);
                 case '-': return new SyntaxToken(SyntaxType.MinusToken, _position++, "-", null);
-                case '*': return new SyntaxToken(SyntaxType.StarToken, _position++, "*", null);
+                case '*':
+                    if (Lookahead == '*') {
+                        _position += 2;
+                        return new SyntaxToken(SyntaxType.StarStarToken, start, "**", null);
+                    } else {
+                        return new SyntaxToken(SyntaxType.StarToken, _position++, "*", null);
+                    }
                 case '/': return new SyntaxToken(SyntaxType.SlashToken, _position++, "/", null);
                 case '%': return new SyntaxToken(SyntaxType.PercentToken, _position++, "%", null);
                 case '(': return new SyntaxToken(SyntaxType.OpenParenthesisToken, _position++, "(", null);

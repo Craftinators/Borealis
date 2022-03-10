@@ -6,15 +6,16 @@
                 case SyntaxType.PlusToken:
                 case SyntaxType.MinusToken:
                 case SyntaxType.BangToken:
-                    return 6;
-                default:
-                    return 0;
+                    return 7;
+                default: return 0;
             }
         }
 
         public static int GetBinaryOperatorPrecedence(this SyntaxType type) {
             // ReSharper disable once SwitchStatementHandlesSomeKnownEnumValuesWithDefault
             switch (type) {
+                case SyntaxType.StarStarToken:
+                    return 6;
                 case SyntaxType.StarToken:
                 case SyntaxType.SlashToken:
                 case SyntaxType.PercentToken:

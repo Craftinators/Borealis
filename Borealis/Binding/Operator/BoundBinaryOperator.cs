@@ -7,6 +7,7 @@ namespace Borealis.Binding {
         private static readonly BoundBinaryOperator[] Operators = {
             new BoundBinaryOperator(SyntaxType.PlusToken, BoundBinaryOperatorType.Addition, typeof(int)),
             new BoundBinaryOperator(SyntaxType.MinusToken, BoundBinaryOperatorType.Subtraction, typeof(int)),
+            new BoundBinaryOperator(SyntaxType.StarStarToken, BoundBinaryOperatorType.Exponent, typeof(int)),
             new BoundBinaryOperator(SyntaxType.StarToken, BoundBinaryOperatorType.Multiplication, typeof(int)),
             new BoundBinaryOperator(SyntaxType.SlashToken, BoundBinaryOperatorType.Division, typeof(int)),
             new BoundBinaryOperator(SyntaxType.PercentToken, BoundBinaryOperatorType.Remainder, typeof(int)),

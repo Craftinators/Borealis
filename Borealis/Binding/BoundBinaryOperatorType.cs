@@ -2,6 +2,7 @@
     internal enum BoundBinaryOperatorType {
         Addition,
         Subtraction,
+        Exponent,
         Multiplication,
         Division,
         Remainder,
