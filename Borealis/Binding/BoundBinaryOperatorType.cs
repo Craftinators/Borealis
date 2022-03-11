@@ -2,12 +2,12 @@
     internal enum BoundBinaryOperatorType {
         Addition,
         Subtraction,
-        Exponent,
+        Exponentiation,
         Multiplication,
         Division,
         Remainder,
-        Leftshift,
-        Rightshift,
+        LeftShift,
+        RightShift,
         GreaterThanOrEqualTo,
         GreaterThan,
         LessThanOrEqualTo,
@@ -16,6 +16,9 @@
         NotEquals,
         LogicalAnd,
         LogicalXor,
-        LogicalOr
+        LogicalOr,
+        BitwiseAnd,
+        BitwiseXor,
+        BitwiseOr
     }
 }

@@ -6,7 +6,7 @@
                 case SyntaxType.PlusToken:
                 case SyntaxType.MinusToken:
                 case SyntaxType.BangToken:
-                    return 10;
+                    return 13;
                 default: return 0;
             }
         }
@@ -15,24 +15,30 @@
             // ReSharper disable once SwitchStatementHandlesSomeKnownEnumValuesWithDefault
             switch (type) {
                 case SyntaxType.StarStarToken:
-                    return 9;
+                    return 12;
                 case SyntaxType.StarToken:
                 case SyntaxType.SlashToken:
                 case SyntaxType.PercentToken:
-                    return 8;
+                    return 11;
                 case SyntaxType.PlusToken:
                 case SyntaxType.MinusToken:
-                    return 7;
+                    return 10;
                 case SyntaxType.LeftAngleBracketLeftAngleBracketToken:
                 case SyntaxType.RightAngleBracketRightAngleBracketToken:
-                    return 6;
+                    return 9;
                 case SyntaxType.RightAngleBracketEqualsToken:
                 case SyntaxType.RightAngleBracketToken:
                 case SyntaxType.LeftAngleBracketEqualsToken:
                 case SyntaxType.LeftAngleBracketToken:
-                    return 5;
+                    return 8;
                 case SyntaxType.EqualsEqualsToken:
                 case SyntaxType.BangEqualsToken:
+                    return 7;
+                case SyntaxType.AmpersandToken:
+                    return 6;
+                case SyntaxType.CaretToken:
+                    return 5;
+                case SyntaxType.PipeToken:
                     return 4;
                 case SyntaxType.AmpersandAmpersandToken:
                     return 3;

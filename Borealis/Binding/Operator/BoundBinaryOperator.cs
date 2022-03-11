@@ -7,7 +7,7 @@ namespace Borealis.Binding {
         private static readonly BoundBinaryOperator[] Operators = {
             new BoundBinaryOperator(SyntaxType.PlusToken, BoundBinaryOperatorType.Addition, typeof(int)),
             new BoundBinaryOperator(SyntaxType.MinusToken, BoundBinaryOperatorType.Subtraction, typeof(int)),
-            new BoundBinaryOperator(SyntaxType.StarStarToken, BoundBinaryOperatorType.Exponent, typeof(int)),
+            new BoundBinaryOperator(SyntaxType.StarStarToken, BoundBinaryOperatorType.Exponentiation, typeof(int)),
             new BoundBinaryOperator(SyntaxType.StarToken, BoundBinaryOperatorType.Multiplication, typeof(int)),
             new BoundBinaryOperator(SyntaxType.SlashToken, BoundBinaryOperatorType.Division, typeof(int)),
             new BoundBinaryOperator(SyntaxType.PercentToken, BoundBinaryOperatorType.Remainder, typeof(int)),
@@ -34,10 +34,19 @@ namespace Borealis.Binding {
             new BoundBinaryOperator(SyntaxType.CaretCaretToken, BoundBinaryOperatorType.LogicalXor, typeof(bool)),
             new BoundBinaryOperator(SyntaxType.PipePipeToken, BoundBinaryOperatorType.LogicalOr, typeof(bool)),
 
-            new BoundBinaryOperator(SyntaxType.LeftAngleBracketLeftAngleBracketToken, BoundBinaryOperatorType.Leftshift,
+            new BoundBinaryOperator(SyntaxType.LeftAngleBracketLeftAngleBracketToken, BoundBinaryOperatorType.LeftShift,
                 typeof(int)),
             new BoundBinaryOperator(SyntaxType.RightAngleBracketRightAngleBracketToken,
-                BoundBinaryOperatorType.Rightshift, typeof(int))
+                BoundBinaryOperatorType.RightShift, typeof(int)),
+
+            new BoundBinaryOperator(SyntaxType.AmpersandToken, BoundBinaryOperatorType.BitwiseAnd, typeof(int)),
+            new BoundBinaryOperator(SyntaxType.AmpersandToken, BoundBinaryOperatorType.BitwiseAnd, typeof(bool)),
+
+            new BoundBinaryOperator(SyntaxType.CaretToken, BoundBinaryOperatorType.BitwiseXor, typeof(int)),
+            new BoundBinaryOperator(SyntaxType.CaretToken, BoundBinaryOperatorType.BitwiseXor, typeof(bool)),
+
+            new BoundBinaryOperator(SyntaxType.PipeToken, BoundBinaryOperatorType.BitwiseOr, typeof(int)),
+            new BoundBinaryOperator(SyntaxType.PipeToken, BoundBinaryOperatorType.BitwiseOr, typeof(bool))
         };
 
         public BoundBinaryOperator(SyntaxType syntaxType, BoundBinaryOperatorType operatorType, Type type) : this(

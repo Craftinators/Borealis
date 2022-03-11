@@ -66,6 +66,8 @@ namespace Borealis.Syntax {
                     if (Lookahead == '&') {
                         _position += 2;
                         return new SyntaxToken(SyntaxType.AmpersandAmpersandToken, start, "&&", null);
+                    } else {
+                        return new SyntaxToken(SyntaxType.AmpersandToken, _position++, "&", null);
                     }
 
                     break;
@@ -73,13 +75,17 @@ namespace Borealis.Syntax {
                     if (Lookahead == '^') {
                         _position += 2;
                         return new SyntaxToken(SyntaxType.CaretCaretToken, start, "^^", null);
+                    } else {
+                        return new SyntaxToken(SyntaxType.CaretToken, _position++, "^", null);
                     }
 
                     break;
                 case '|':
                     if (Lookahead == '|') {
                         _position += 2;
-                        return new SyntaxToken(SyntaxType.PipePipeToken, start, "==", null);
+                        return new SyntaxToken(SyntaxType.PipePipeToken, start, "||", null);
+                    } else {
+                        return new SyntaxToken(SyntaxType.PipeToken, _position++, "|", null);
                     }
 
                     break;

@@ -43,7 +43,8 @@ namespace Borealis {
                     switch (binaryExpression.BoundOperator.OperatorType) {
                         case BoundBinaryOperatorType.Addition: return (int) leftValue + (int) rightValue;
                         case BoundBinaryOperatorType.Subtraction: return (int) leftValue - (int) rightValue;
-                        case BoundBinaryOperatorType.Exponent: return (int) Math.Pow((int) leftValue, (int) rightValue);
+                        case BoundBinaryOperatorType.Exponentiation:
+                            return (int) Math.Pow((int) leftValue, (int) rightValue);
                         case BoundBinaryOperatorType.Multiplication: return (int) leftValue * (int) rightValue;
                         case BoundBinaryOperatorType.Division: return (int) leftValue / (int) rightValue;
                         case BoundBinaryOperatorType.Remainder: return (int) leftValue % (int) rightValue;
@@ -56,8 +57,23 @@ namespace Borealis {
                         case BoundBinaryOperatorType.LessThan: return (int) leftValue < (int) rightValue;
                         case BoundBinaryOperatorType.Equals: return Equals(leftValue, rightValue);
                         case BoundBinaryOperatorType.NotEquals: return !Equals(leftValue, rightValue);
-                        case BoundBinaryOperatorType.Leftshift: return (int) leftValue << (int) rightValue;
-                        case BoundBinaryOperatorType.Rightshift: return (int) leftValue >> (int) rightValue;
+                        case BoundBinaryOperatorType.LeftShift: return (int) leftValue << (int) rightValue;
+                        case BoundBinaryOperatorType.RightShift: return (int) leftValue >> (int) rightValue;
+                        case BoundBinaryOperatorType.BitwiseAnd: {
+                            if (leftValue is int intLeftValue) return intLeftValue & (int) rightValue;
+
+                            return (bool) leftValue & (bool) rightValue;
+                        }
+                        case BoundBinaryOperatorType.BitwiseXor: {
+                            if (leftValue is int intLeftValue) return intLeftValue ^ (int) rightValue;
+
+                            return (bool) leftValue ^ (bool) rightValue;
+                        }
+                        case BoundBinaryOperatorType.BitwiseOr: {
+                            if (leftValue is int intLeftValue) return intLeftValue | (int) rightValue;
+
+                            return (bool) leftValue | (bool) rightValue;
+                        }
                         default: throw new Exception($"Unexpected binary operator {binaryExpression.BoundOperator}");
                     }
                 }
