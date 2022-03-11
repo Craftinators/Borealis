@@ -1,6 +1,0 @@
-C:\Users\Craft\RiderProjects\Borealis\Borealis\bin\Debug\Borealis.dll
-C:\Users\Craft\RiderProjects\Borealis\Borealis\bin\Debug\Borealis.pdb
-C:\Users\Craft\RiderProjects\Borealis\Borealis\obj\Debug\Borealis.csprojAssemblyReference.cache
-C:\Users\Craft\RiderProjects\Borealis\Borealis\obj\Debug\Borealis.csproj.CoreCompileInputs.cache
-C:\Users\Craft\RiderProjects\Borealis\Borealis\obj\Debug\Borealis.dll
-C:\Users\Craft\RiderProjects\Borealis\Borealis\obj\Debug\Borealis.pdb
