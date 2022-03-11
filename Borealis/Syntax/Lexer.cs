@@ -51,6 +51,7 @@ namespace Borealis.Syntax {
             switch (Current) {
                 case '+': return new SyntaxToken(SyntaxType.PlusToken, _position++, "+", null);
                 case '-': return new SyntaxToken(SyntaxType.MinusToken, _position++, "-", null);
+                case '~': return new SyntaxToken(SyntaxType.TildeToken, _position++, "~", null);
                 case '*':
                     if (Lookahead == '*') {
                         _position += 2;
@@ -69,8 +70,6 @@ namespace Borealis.Syntax {
                     } else {
                         return new SyntaxToken(SyntaxType.AmpersandToken, _position++, "&", null);
                     }
-
-                    break;
                 case '^':
                     if (Lookahead == '^') {
                         _position += 2;
@@ -78,8 +77,6 @@ namespace Borealis.Syntax {
                     } else {
                         return new SyntaxToken(SyntaxType.CaretToken, _position++, "^", null);
                     }
-
-                    break;
                 case '|':
                     if (Lookahead == '|') {
                         _position += 2;
@@ -87,8 +84,6 @@ namespace Borealis.Syntax {
                     } else {
                         return new SyntaxToken(SyntaxType.PipeToken, _position++, "|", null);
                     }
-
-                    break;
                 case '=':
                     if (Lookahead == '=') {
                         _position += 2;

@@ -5,6 +5,7 @@
             switch (type) {
                 case SyntaxType.PlusToken:
                 case SyntaxType.MinusToken:
+                case SyntaxType.TildeToken:
                 case SyntaxType.BangToken:
                     return 13;
                 default: return 0;

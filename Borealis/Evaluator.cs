@@ -32,6 +32,7 @@ namespace Borealis {
                     switch (unaryExpression.BoundOperator.OperatorType) {
                         case BoundUnaryOperatorType.Identity: return +(int) expression;
                         case BoundUnaryOperatorType.Negation: return -(int) expression;
+                        case BoundUnaryOperatorType.BitwiseComplement: return ~(int) expression;
                         case BoundUnaryOperatorType.LogicalNegation: return !(bool) expression;
                         default: throw new Exception($"Unexpected unary operator {unaryExpression.BoundOperator}");
                     }

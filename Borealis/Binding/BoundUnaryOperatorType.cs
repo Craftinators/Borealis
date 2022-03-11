@@ -2,6 +2,7 @@
     internal enum BoundUnaryOperatorType {
         Identity,
         Negation,
+        BitwiseComplement,
         LogicalNegation
     }
 }
