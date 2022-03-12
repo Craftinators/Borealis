@@ -1,7 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="75c46e99-b2f4-4889-b980-85d5cd426aa0" name="Default Changelist" comment="" />
+    <list default="true" id="75c46e99-b2f4-4889-b980-85d5cd426aa0" name="Default Changelist" comment="chore: Stopped tracking unnecessary files">
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Borealis/.idea/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Borealis/.idea/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Borealis/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Borealis/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Borealis/Borealis.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Borealis/Borealis.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Borealis/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Borealis/Program.cs" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -19,9 +24,11 @@
     </file-type-list>
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="mock://C:/Users/Craft/RiderProjects/Borealis/Borealis/Program.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/5A92AD44-406B-4318-9677-3A464E9EC96E/86/1b1076af/Math.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/5A92AD44-406B-4318-9677-3A464E9EC96E/72/ac3c032c/MethodImplAttribute.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/5A92AD44-406B-4318-9677-3A464E9EC96E/21/fa5b07cf/__DynamicallyInvokableAttribute.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://C:/Users/Craft/RiderProjects/Borealis/Borealis/Program.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Borealis/VariableSymbol.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
@@ -42,7 +49,6 @@
       <option value="$PROJECT_DIR$/Borealis/Binding/Expression/BoundAssignmentExpression.cs" />
       <option value="$PROJECT_DIR$/Borealis/Binding/Expression/BoundVariableExpression.cs" />
       <option value="$PROJECT_DIR$/Borealis/Binding/Binder.cs" />
-      <option value="$PROJECT_DIR$/Borealis/Program.cs" />
       <option value="$PROJECT_DIR$/Borealis/Binding/BoundBinaryOperatorType.cs" />
       <option value="$PROJECT_DIR$/Borealis/Syntax/Lexer.cs" />
       <option value="$PROJECT_DIR$/Borealis/Syntax/SyntaxType.cs" />
@@ -51,6 +57,7 @@
       <option value="$PROJECT_DIR$/Borealis/Evaluator.cs" />
       <option value="$PROJECT_DIR$/Borealis/Binding/Operator/BoundUnaryOperator.cs" />
       <option value="$PROJECT_DIR$/Borealis/Binding/Operator/BoundBinaryOperator.cs" />
+      <option value="$PROJECT_DIR$/Borealis/Program.cs" />
       <option value="$PROJECT_DIR$/.idea/.idea.Borealis/.idea/.gitignore" />
     </changedPaths>
   </component>
@@ -104,7 +111,7 @@
       <workItem from="1646770616533" duration="628000" />
       <workItem from="1646860172288" duration="7830000" />
       <workItem from="1646947693524" duration="5157000" />
-      <workItem from="1647034727305" duration="3358000" />
+      <workItem from="1647034727305" duration="4468000" />
     </task>
     <task id="LOCAL-00001" summary="fix: Fixed circular dependency issue">
       <created>1646625303583</created>
@@ -183,7 +190,14 @@
       <option name="project" value="LOCAL" />
       <updated>1646971475175</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="chore: Stopped tracking unnecessary files">
+      <created>1647043794600</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1647043794601</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -220,6 +234,7 @@
     <MESSAGE value="feat: Added `&gt;=`, `&gt;`, `&lt;=`, and `&lt;` binary operators" />
     <MESSAGE value="feat: Added bitwise operators `&amp;`, `^`, and `|`" />
     <MESSAGE value="feat: Added bitwise complement unary operator" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: Added bitwise complement unary operator" />
+    <MESSAGE value="chore: Stopped tracking unnecessary files" />
+    <option name="LAST_COMMIT_MESSAGE" value="chore: Stopped tracking unnecessary files" />
   </component>
 </project>
