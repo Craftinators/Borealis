@@ -1,8 +1,6 @@
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
-using Borealis.Binding;
 using Borealis.Syntax;
 
 namespace Borealis {
@@ -11,17 +9,17 @@ namespace Borealis {
         // ReSharper disable once UnusedMember.Global
         public static void Compile() {
             Dictionary<VariableSymbol, object> variables = new Dictionary<VariableSymbol, object>();
-            
+
             while (true) {
                 Console.Write("> ");
                 string line = Console.ReadLine();
-                
+
                 SyntaxTree syntaxTree = SyntaxTree.Parse(line);
                 Compilation compilation = new Compilation(syntaxTree);
                 EvaluationResult result = compilation.Evaluate(variables);
 
                 IReadOnlyList<Diagnostic> diagnostics = result.Diagnostics;
-                
+
                 // PrintSyntaxNodeTree(syntaxTree.Root);
 
                 if (!diagnostics.Any()) {
@@ -45,18 +43,18 @@ namespace Borealis {
                         Console.Write(suffix);
                         Console.WriteLine();
                     }
-                    
+
                     Console.WriteLine();
                 }
             }
             // ReSharper disable once FunctionNeverReturns
         }
 
-        private static void PrintSyntaxNodeTree(SyntaxNode node, string indent = "", bool isLast = true) {
+        private static void PrintSyntaxTree(SyntaxNode node, string indent = "", bool isLast = true) {
             Console.ForegroundColor = ConsoleColor.DarkGray;
-            
+
             string marker = isLast ? "└──" : "├──";
-            
+
             Console.Write(indent);
             Console.Write(marker);
             Console.Write(node.Type);
@@ -70,9 +68,9 @@ namespace Borealis {
             indent += isLast ? "   " : "│  ";
 
             SyntaxNode lastChild = node.GetChildren().LastOrDefault();
-            foreach (SyntaxNode child in node.GetChildren()) 
-                PrintSyntaxNodeTree(child, indent, child == lastChild);
-            
+            foreach (SyntaxNode child in node.GetChildren())
+                PrintSyntaxTree(child, indent, child == lastChild);
+
             Console.ResetColor();
         }
     }
